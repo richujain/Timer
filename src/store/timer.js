@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialCounterState = { hour: 0, minute: 0, second: 0, active: false, resetTimer: false }
+const initialTimerState = { hour: 0, minute: 0, second: 0, active: false, resetTimer: false }
 
 const timerSlice = createSlice({
     name: 'timer',
-    initialState: initialCounterState,
+    initialState: initialTimerState,
     reducers: {
         incrementHour(state) {
             state.hour++ 
@@ -19,7 +19,13 @@ const timerSlice = createSlice({
             state.minute--
         },
         increaseMinute(state, action) {
-            state.minute = state.counter + action.payload
+            state.minute = state.minute + action.payload
+        },
+        incrementSecond(state) {
+            state.second--
+        },
+        decrementSecond(state) {
+            state.second--
         },
         timerActive(state){
             state.active = true
@@ -32,6 +38,6 @@ const timerSlice = createSlice({
         },
     }
 })
-export const counterActions = counterSlice.actions
+export const timerActions = timerSlice.actions
 
 export default timerSlice

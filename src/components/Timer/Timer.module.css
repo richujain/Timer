@@ -19,3 +19,10 @@
 .div {
   text-align: center;
 }
+
+.value {
+  font-size: 2rem;
+  color: green;
+  margin: 2rem 0;
+  font-weight: bold;
+}
