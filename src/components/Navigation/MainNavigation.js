@@ -4,7 +4,6 @@ export default function MainNavigation(props) {
   const [showLightButton, setShowLightButton] = useState(true);
   const [showActiveQuote, setShowActiveQuote] = useState(false);
   const lightButtonHandler = () => {
-    console.log(showLightButton)
     props.onColorThemeHandler(!showLightButton);
     setShowLightButton((showLightButton) => !showLightButton)
   };

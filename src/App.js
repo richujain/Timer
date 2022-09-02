@@ -1,6 +1,7 @@
 import "./App.css";
 import React, { useState } from "react";
 import MainNavigation from "./components/Navigation/MainNavigation";
+import Timer from "./components/Timer/Timer";
 
 function App() {
   const [isLight, setIsLight] = useState(true);
@@ -23,8 +24,7 @@ function App() {
         onColorThemeHandler={colorThemeHandler}
         onShowQuotesHandler={showQuotesHandler}
       />
-      
-      <p>Hello</p>
+      <Timer/>
     </div>
   );
 }
