@@ -22,13 +22,13 @@ const timerSlice = createSlice({
             state.minute = state.minute + action.payload
         },
         incrementSecond(state) {
-            state.second--
+            state.second++
         },
         decrementSecond(state) {
             state.second--
         },
-        timerActive(state){
-            state.active = true
+        timerActive(state, action){
+            state.active = action.payload
         },
         resetTimer(state) {
             state.hour = 0
@@ -36,6 +36,16 @@ const timerSlice = createSlice({
             state.second = 0
             state.active = false
         },
+        setHour(state, action) {
+            state.hour = action.payload
+        },
+        setMinute(state, action) {
+            state.minute = action.payload
+        },
+        setSecond(state, action) {
+            state.second = action.payload 
+        },
+        
     }
 })
 export const timerActions = timerSlice.actions

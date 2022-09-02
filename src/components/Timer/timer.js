@@ -7,15 +7,37 @@ export default function Timer() {
   const hour = useSelector((state) => state.hour);
   const minute = useSelector((state) => state.minute);
   const second = useSelector((state) => state.second);
-  const active = useSelector((state) => state.active);
+  let active = useSelector((state) => state.active);
+  var interval;
 
-//   useEffect(() => {
-//     const interval = setInterval(() => {
-//       dispatch(timerActions.decrementSecond());
-//     }, 1000);
-//     return () => clearInterval(interval);
-//   }, []);
+    useEffect(() => {
+        if(active){
+            if(second > 0 || minute > 0 || hour > 0){
+                interval = setInterval(() => {
+                    if(second > 0){
+                        dispatch(timerActions.decrementSecond());
+                    }else if(second === 0 && minute > 0){
+                        dispatch(timerActions.setSecond(59))
+                        dispatch(timerActions.decrementMinute())
+                        
+                    } else if(second === 0 && minute === 0 && hour > 0 ){
+                        dispatch(timerActions.setSecond(59))
+                        dispatch(timerActions.setMinute(59))
+                        dispatch(timerActions.decrementHour())
+                        
+                    }
+                  }, 100);
+            } else {
+                dispatch(timerActions.timerActive(!active))
+            }
+        }
+        return () => clearInterval(interval);
+        
+    }, [active,second,minute,hour])
   const startHandler = () => {
+    dispatch(timerActions.timerActive(!active))
+
+    
     
   };
 
@@ -23,24 +45,27 @@ export default function Timer() {
     dispatch(timerActions.incrementHour());
   };
   const decrementHourHandler = () => {
-    dispatch(timerActions.decrementHour())
-  }
+    dispatch(timerActions.decrementHour());
+  };
   const incrementMinuteHandler = () => {
-    dispatch(timerActions.incrementMinute())
-  }
+    dispatch(timerActions.incrementMinute());
+  };
   const increaseMinuteHandler = () => {
     dispatch(timerActions.increaseMinute(5));
   };
   const decrementMinuteHandler = () => {
-    dispatch(timerActions.decrementMinute())
-  }
+    dispatch(timerActions.decrementMinute());
+  };
   const resetHandler = () => {
-    dispatch(timerActions.resetTimer())
-  }
+    dispatch(timerActions.timerActive(false))
+    dispatch(timerActions.timerActive(false))
+    dispatch(timerActions.resetTimer());
+  };
 
   return (
     <div className={classes.div}>
       <div className={classes.value}>
+        {/* {hour}:{minute}:{second} */}
         {("0" + hour).slice(-2)}:{("0" + minute).slice(-2)}:
         {("0" + second).slice(-2)}
       </div>
@@ -49,7 +74,7 @@ export default function Timer() {
         className={`${classes.button} ${classes.buttonRoundedCorner}`}
         onClick={startHandler}
       >
-        START
+        {!active ? "START" : "PAUSE"}
       </button>
       <button
         onClick={resetHandler}
