@@ -71,7 +71,18 @@ export default function Timer(props) {
     dispatch(timerActions.resetTimer());
   };
 
+  const fullScreenHandler = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      }
+    }
+  }
+
   return (
+    <React.Fragment>
     <div className={classes.div}>
       <div className={classes.value}>
         <h1 style={blackToWhite}>
@@ -79,7 +90,13 @@ export default function Timer(props) {
           {("0" + second).slice(-2)}
         </h1>
       </div>
-
+      <button
+        style={blackToWhite}
+        className={`${classes.button} ${classes.buttonRoundedCorner}`}
+        onClick={startHandler}
+      >
+        <h3>{!active ? "START" : "PAUSE"}</h3>
+      </button>
       <button
         style={blackToWhite}
         onClick={incrementHourHandler}
@@ -115,13 +132,7 @@ export default function Timer(props) {
       >
         <h3>-M</h3>
       </button>
-      <button
-        style={blackToWhite}
-        className={`${classes.button} ${classes.buttonRoundedCorner}`}
-        onClick={startHandler}
-      >
-        <h3>{!active ? "START" : "PAUSE"}</h3>
-      </button>
+      
       <button
         style={blackToWhite}
         onClick={resetHandler}
@@ -131,5 +142,20 @@ export default function Timer(props) {
         <h3>RESET</h3>
       </button>
     </div>
+    <div className={classes.fullScreenImg}>
+      {props.light? <img
+                className={classes.photo}
+                src={require("../../images/fullscreen_black.png")}
+                alt="Color theme toggle"
+                onClick={fullScreenHandler}
+              /> : <img
+              className={classes.photo}
+              src={require("../../images/fullscreen_white.png")}
+              alt="Color theme toggle"
+              onClick={fullScreenHandler}
+            />}
+      
+    </div>
+    </React.Fragment>
   );
 }
