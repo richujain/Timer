@@ -144,6 +144,7 @@ export default function Timer(props) {
     </div>
     <div className={classes.fullScreenImg}>
       {props.light? <img
+            
                 className={classes.photo}
                 src={require("../../images/fullscreen_black.png")}
                 alt="Color theme toggle"

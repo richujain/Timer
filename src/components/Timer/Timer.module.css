@@ -1,17 +1,16 @@
 .button {
-  background-color: #4CAF50; /* Green */
+  background-color: #4caf50; /* Green */
   border: none;
   color: white;
-  padding: 15px 32px;
+
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 1rem;
   margin: 4px 2px;
   cursor: pointer;
-  width: 125px;
+  width: 10rem;
 }
-
 
 .button:active {
   transform: translateY(4px);
@@ -24,12 +23,12 @@
 }
 
 .div {
-text-align: center;
-position:absolute;
-left:0;
-bottom:0;
-right:0;
-padding-bottom:100px;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding-bottom: 10rem;
 }
 
 .value {
@@ -41,19 +40,26 @@ padding-bottom:100px;
 }
 
 h1 {
-  font-size: 180px;
+  font-size: 10rem;
 }
 
 .fullScreenImg {
   position: absolute;
-bottom:0;
-margin-bottom: 30px;
-right:30px;
+  bottom: 0;
+  margin-bottom: 30px;
+  right: 30px;
 }
 .photo {
   height: 30px;
   width: 30px;
-  transform:scale(1, 1);
-    transition: 0.1s;
-    
+  transform: scale(1, 1);
+  transition: 0.1s;
+}
+@media screen and (max-width: 767px) {
+  h1{
+      font-size: 30px;
+  }
+  .photo {
+    visibility: hidden;
+  }
 }
