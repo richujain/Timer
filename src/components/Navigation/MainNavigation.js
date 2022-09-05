@@ -2,15 +2,11 @@ import React, { useState } from "react";
 import classes from "./MainNavigation.module.css";
 export default function MainNavigation(props) {
   const [showLightButton, setShowLightButton] = useState(true);
-  const [showActiveQuote, setShowActiveQuote] = useState(false);
   const lightButtonHandler = () => {
     props.onColorThemeHandler(!showLightButton);
     setShowLightButton((showLightButton) => !showLightButton)
   };
-  const showActiveQuoteHandler = (showActiveQuote) => {
-    setShowActiveQuote((showActiveQuote) => !showActiveQuote)
-    props.onShowQuotesHandler();
-  };
+
   return (
     <header className={classes.header}>
       <nav className={classes.nav}>
@@ -33,24 +29,7 @@ export default function MainNavigation(props) {
               />
             )}
           </li>
-          <li>
-            {!showActiveQuote && (
-              <img
-                className={classes.photo}
-                src={!showLightButton ? require("../../images/quotes_white.png") : require("../../images/quotes.png")}
-                alt="Color theme toggle"
-                onClick={showActiveQuoteHandler}
-              />
-            )}
-            {showActiveQuote && (
-              <img
-                className={classes.photo}
-                src={require("../../images/quotes_active.png")}
-                alt="Color theme toggle"
-                onClick={showActiveQuoteHandler}
-              />
-            )}
-          </li>
+        
         </ul>
       </nav>
     </header>
