@@ -59,7 +59,7 @@ h1 {
   h1{
       font-size: 30px;
   }
-  .photo {
+  .fullScreenImg {
     visibility: hidden;
   }
 }
